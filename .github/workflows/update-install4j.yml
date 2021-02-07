@@ -3,7 +3,7 @@ name: Update install4j version
 "on":
   schedule:
     - cron: 0 5 * * 1-5
-  workflow_dispatch: { }
+  workflow_dispatch: {}
 jobs:
   update:
     name: Update install4j version
