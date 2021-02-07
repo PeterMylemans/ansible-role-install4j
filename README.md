@@ -1,4 +1,4 @@
-Role Name
+Install4j
 =========
 
 Installs [install4j](https://www.ej-technologies.com/products/install4j/overview.html) on RHEL/CentOS and Debian/Ubuntu servers.
