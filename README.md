@@ -23,7 +23,7 @@ The version of install4j to install. This defaults to the latest released versio
 
 `install4j_timestamp_server_url: http://timestamp.digicert.com`
 
-The url of the timestamp server that is for code signing. 
+The url of the timestamp server that is used for code signing. 
 
 Dependencies
 ------------
