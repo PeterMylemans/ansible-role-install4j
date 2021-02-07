@@ -3,6 +3,11 @@ Install4j
 
 Installs [install4j](https://www.ej-technologies.com/products/install4j/overview.html) on RHEL/CentOS and Debian/Ubuntu servers.
 
+[![CI](https://github.com/petermylemans/ansible-role-install4j/workflows/CI/badge.svg)](https://github.com/petermylemans/ansible-role-install4j/actions)
+[![Version](https://img.shields.io/github/v/release/petermylemans/ansible-role-install4j)](https://github.com/petermylemans/ansible-role-install4j/releases/)
+[![galaxy downloads](https://img.shields.io/ansible/role/d/52985?label=galaxy%20downloads)](https://galaxy.ansible.com/petermylemans/install4j)
+[![galaxy score](https://img.shields.io/ansible/quality/52985?label=galaxy%20quality%20score)](https://galaxy.ansible.com/petermylemans/install4j)
+
 Typically, this is used in build servers that need to generate installers.
 
 Requirements
