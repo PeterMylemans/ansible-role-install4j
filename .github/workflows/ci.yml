@@ -4,7 +4,8 @@ name: CI
   pull_request:
   push:
     branches:
-      - master
+      - main
+  workflow_dispatch:
   schedule:
     - cron: "30 7 * * 2"
 
