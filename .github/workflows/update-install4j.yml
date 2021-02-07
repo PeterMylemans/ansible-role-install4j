@@ -1,0 +1,41 @@
+name: Update install4j version
+"on":
+  schedule:
+    - cron: 0 5 * * 1-5
+  workflow_dispatch: { }
+jobs:
+  update:
+    name: Update install4j version
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - id: versions
+        name: Find latest version
+        run: |
+          #!/usr/bin/env bash
+
+          set -euo pipefail
+
+          OLD_VERSION=$(grep -ioE "install4j_version: [0-9]+([\.][0-9]+)?([\.][0-9]+)?" defaults/main.yml | cut -c 20-)
+          echo "Current install4j version is $OLD_VERSION"
+
+          NEW_VERSION=$(curl -s https://www.ej-technologies.com/download/install4j/changelog.html | grep -ioE "Release [0-9]+([\.][0-9]+)?([\.][0-9]+)?" | head -n 1 | cut -c 9-)
+          echo "Latest install4j version is $NEW_VERSION"
+
+          sed -i "s/install4j_version:.*/install4j_version: $version/g" defaults/main.yml
+          sed -i "s/\`install4j_version: .*\`/\`install4j_version: $version\`/g" README.md
+
+          echo "::set-output name=old-version::${OLD_VERSION}"
+          echo "::set-output name=new-version::${NEW_VERSION}"
+
+      - uses: peter-evans/create-pull-request@v3
+        with:
+          body: |-
+            Bumps install4j from `${{ steps.versions.outputs.old-version }}` to `${{ steps.versions.outputs.new-version }}`.
+          branch: update/install4j
+          commit-message: |-
+            Bump install4j from ${{ steps.versions.outputs.old-version }} to ${{ steps.versions.outputs.new-version }}
+          delete-branch: true
+          labels: semver:patch, type:task
+          title: Bump install4j from ${{ steps.versions.outputs.old-version }} to ${{ steps.versions.outputs.new-version }}
