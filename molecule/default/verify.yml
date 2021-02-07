@@ -1,0 +1,13 @@
+---
+- name: Verify
+  hosts: all
+  tasks:
+    - name: Retrieve install4j version
+      command: "/opt/install4j8/bin/install4jc --version"
+      changed_when: false
+      register: this
+
+    - name: Test install4j version
+      assert:
+        that:
+          - "'install4j version' in this.stdout"
