@@ -23,8 +23,7 @@ jobs:
           NEW_VERSION=$(curl -s https://www.ej-technologies.com/download/install4j/changelog.html | grep -ioE "Release [0-9]+([\.][0-9]+)?([\.][0-9]+)?" | head -n 1 | cut -c 9-)
           echo "Latest install4j version is $NEW_VERSION"
 
-          sed -i "s/install4j_version:.*/install4j_version: $version/g" defaults/main.yml
-          sed -i "s/\`install4j_version: .*\`/\`install4j_version: $version\`/g" README.md
+          sed -i "s/install4j_version: $OLD_VERSION/install4j_version: $NEW_VERSION/g" defaults/main.yml README.md
 
           echo "::set-output name=old-version::${OLD_VERSION}"
           echo "::set-output name=new-version::${NEW_VERSION}"
