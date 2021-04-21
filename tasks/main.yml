@@ -1,13 +1,13 @@
 ---
 - name: Gather the installed version
-  command: /opt/install4j8/bin/install4jc --version
+  command: /opt/install4j9/bin/install4jc --version
   changed_when: false
   failed_when: false
   register: installed_install4j_version
 
 - name: Install install4j (RedHat)
   package:
-    name: "https://download-gcdn.ej-technologies.com/install4j/install4j_linux_{{ install4j_version | replace('.', '_') }}.rpm"
+    name: "https://download-gcdn.ej-technologies.com/install4j/install4j_linux-x64_{{ install4j_version | replace('.', '_') }}.rpm"
     state: present
     disable_gpg_check: true
   when:
@@ -17,7 +17,7 @@
 
 - name: Install install4j (Debian)
   apt:
-    deb: "https://download-gcdn.ej-technologies.com/install4j/install4j_linux_{{ install4j_version | replace('.', '_') }}.deb"
+    deb: "https://download-gcdn.ej-technologies.com/install4j/install4j_linux-x64_{{ install4j_version | replace('.', '_') }}.deb"
     state: present
   when:
     - ansible_os_family == 'Debian'
@@ -29,16 +29,6 @@
     src: "install4j.vmoptions.j2"
     dest: /opt/install4j8/bin/install4j.vmoptions
     backup: false
-    owner: root
-    group: root
-    mode: 0644
-  become: true
-
-- name: Add zulu JRE provider extension
-  get_url:
-    url: https://github.com/petermylemans/zulu-install4j-provider/releases/download/1.0.1/zulu-install4j-provider-1.0.1.jar
-    dest: /opt/install4j8/extensions/zulu-install4j-provider.jar
-    checksum: sha256:e00ce0ced5d3a410ba11b862c0f71d506dabe67b17a436d38ca7982d3bbcaf27
     owner: root
     group: root
     mode: 0644
