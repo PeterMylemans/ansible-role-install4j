@@ -27,7 +27,7 @@
 - name: Configure install4j vm options
   template:
     src: "install4j.vmoptions.j2"
-    dest: /opt/install4j8/bin/install4j.vmoptions
+    dest: /opt/install4j9/bin/install4j.vmoptions
     backup: false
     owner: root
     group: root
