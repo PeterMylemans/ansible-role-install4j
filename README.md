@@ -22,7 +22,7 @@ Role Variables
 
 Available variables are listed below, along with default values (see `defaults/main.yml`):
 
-`install4j_version: 8.0.11`
+`install4j_version: 9.0.1`
 
 The version of install4j to install. This defaults to the latest released version.
 
