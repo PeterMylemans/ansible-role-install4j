@@ -3,7 +3,7 @@
   hosts: all
   tasks:
     - name: Retrieve install4j version
-      command: "/opt/install4j8/bin/install4jc --version"
+      command: "/opt/install4j9/bin/install4jc --version"
       changed_when: false
       register: this
 
